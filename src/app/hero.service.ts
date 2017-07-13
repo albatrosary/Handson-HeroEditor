@@ -18,7 +18,7 @@ export class HeroService {
   getHeroes(): Promise<Hero[]> {
     return this.http.get(this.url)
              .toPromise()
-             .then(response => response.json() as Hero[])
+             .then(response => response.json().data as Hero[])
              .catch(this.handleError);
   }
 
@@ -43,7 +43,7 @@ export class HeroService {
     return this.http
       .post(this.url, JSON.stringify({name: name}), {headers: this.headers})
       .toPromise()
-      .then(res => res.json().data as Hero)
+      .then(res => res.json() as Hero)
       .catch(this.handleError);
   }
   

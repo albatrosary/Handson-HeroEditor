@@ -21,37 +21,7 @@ server.listen(port, process.env.OPENSHIFT_NODEJS_IP || process.env.IP || undefin
   console.log('Express server listening on %d, in %s mode', port, app.get('env'));
 });
 
-const items = require('./heroes.json');
-
-app.get('/api/heroes', function(req, res) {
-  res.status(200).json(items);
-});
-
-app.get('/api/heroes/:id', function(req, res) {
-  let id = req.params.id;
-  
-  const item = items.filter(function(item, index){
-    if ((item.id).indexOf(id) >= 0) return true;
-  });
-  res.status(200).json(item[0]);
-});
-
-app.post('/api/heroes', function(req, res) {
-  items.push(req.body);
-  res.status(200).json();
-});
-
-app.put('/api/heroes', function(req, res) {
-  let id = req.body.id;
-  let issue = req.body.issue;
-  items[id] = JSON.parse(issue);
-  res.status(200).json();
-});
-
-app.delete('/api/heroes/:id', function(req, res) {
-  let id = req.params.id;
-  items.splice(id, 1);
-  res.status(200).json();
-});
+// API definition
+require('./api/heroes')(app);
 
 exports = module.exports = app;
