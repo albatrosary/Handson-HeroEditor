@@ -24,10 +24,7 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap
-      .switchMap((params: ParamMap) => {
-        console.log(+params.get('id'));
-        return this.heroService.getHero(+params.get('id'))
-      })
+      .switchMap((params: ParamMap) => this.heroService.getHero(+params.get('id')))
       .subscribe(hero => this.hero = hero);
   }
 
