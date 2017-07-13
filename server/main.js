@@ -29,7 +29,11 @@ app.get('/api/heroes', function(req, res) {
 
 app.get('/api/heroes/:id', function(req, res) {
   let id = req.params.id;
-  res.status(200).json(items[id]);
+  
+  const item = items.filter(function(item, index){
+    if ((item.id).indexOf(id) >= 0) return true;
+  });
+  res.status(200).json(item[0]);
 });
 
 app.post('/api/heroes', function(req, res) {
