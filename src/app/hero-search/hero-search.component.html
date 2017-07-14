@@ -1,12 +1,10 @@
-<div id="search-component">
-  <h4>Hero Search</h4>
-  <form #f="ngForm" novalidate>
-    <input type="text" name="keyword" ngModel required>
-    <div [hidden]="!f.form.valid">
-      <div *ngFor="let hero of heroes | search:f.value.keyword"
-          (click)="gotoDetail(hero)" class="search-result" >
-        {{hero.name}}
-      </div>
+<h4>Hero Search</h4>
+<form #f="ngForm" novalidate>
+  <input type="text" name="keyword" ngModel required>
+  <div [hidden]="!f.form.valid">
+    <div *ngFor="let hero of heroes | search:f.value.keyword"
+        (click)="gotoDetail(hero)" class="search-result" >
+      {{hero.name}}
     </div>
-  </form>
-</div>
+  </div>
+</form>
