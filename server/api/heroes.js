@@ -5,6 +5,10 @@ exports = module.exports = function(app) {
   const items = require('./heroes.json');
 
   app.get('/api/heroes', function(req, res) {
+    let name = req.query.name;
+    let item = (items.data).filter((element, index, array) => {
+      return (element.name.indexOf(name)!= -1);
+    });
     res.status(200).json(items);
   });
 
